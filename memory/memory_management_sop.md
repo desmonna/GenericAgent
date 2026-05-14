@@ -70,6 +70,48 @@ L4: ../memory/L4_raw_sessions/ (历史会话层 - scheduler反射自动收集，
 > 反例：名字已自解释时 ❌ discord_slate_sop(Slate输入框) → ✅ discord_slate_sop
 
 ---
+
+## 自动化工具：memory_management.py
+
+**位置**：`../memory/memory_management.py`  
+**定位**：L0(META-SOP)的自动化执行器，负责L1↔L2/L3同步，是记忆系统的"体检与修复工具"。
+
+### 核心功能
+
+- **L2同步**：解析L2的`## [SECTION]`列表，补入L1的L2行
+- **L3同步**：扫描memory/目录，按`SOP>文件夹>独立py`优先级生成L3索引
+- **重建L3**：`--rebuild-l3` 显式清理重复项（py已被SOP代表时不单独记录）
+
+### 使用时机
+
+| 场景 | 命令 | 说明 |
+|------|------|------|
+| Git拉取后检查新增技能 | `--check` | 只检查不同步，查看差异 |
+| 日常L2/L3变更后同步 | 无参数 | 自动检测并patch L1 |
+| 清理L3重复/过期索引 | `--rebuild-l3` | SOP>文件夹>py优先级重建 |
+| 验证记忆规范性 | `--validate` | 检查L1行数、命名等（不写入） |
+| 预览不写入 | `--dry-run` | 显示将要做的变更 |
+
+### 调用规范
+
+```bash
+# 正确调用方式（从任意cwd）
+python ../memory/memory_management.py --check
+python ../memory/memory_management.py --rebuild-l3
+
+# 或从memory目录
+cd ../memory && python memory_management.py
+```
+
+### 与本SOP的协作
+
+- **本SOP**：定义记忆架构、原则、红线（"为什么"和"规则"）
+- **memory_management.py**：自动化执行同步、验证、重建（"怎么做"）
+- **原则**：手动修改L1前先`--check`确认；修改后`--validate`验证；Git拉取后必跑`--check`
+
+---
+
+---
 ## 信息分类快速决策树
 ```
 "这条信息该放哪层？"
