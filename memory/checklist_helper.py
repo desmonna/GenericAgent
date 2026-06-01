@@ -43,7 +43,7 @@ class CL:
         with socket.socket() as s: s.bind(('',0)); port = s.getsockname()[1]
         key = f"cl_{int(time.time())%1000}"
         (self.folder/"bbs").mkdir(exist_ok=True)
-        subprocess.Popen(["python", str(_BBS), "--cwd", str(self.folder/"bbs"),
+        subprocess.Popen([sys.executable, str(_BBS), "--cwd", str(self.folder/"bbs"),
                           "--port", str(port), "--key", key], **_PK)
         time.sleep(1)
         self._d["bbs"] = {"url": f"http://127.0.0.1:{port}", "key": key}
@@ -79,10 +79,10 @@ class CL:
         n = n or self.workers or 1
         if n <= 0: return
         for i in range(n):
-            subprocess.Popen(["python", str(_MAIN), "--reflect", str(_W_RE),
+            subprocess.Popen([sys.executable, str(_MAIN), "--reflect", str(_W_RE),
                 "--base_url", self.bbs_url, "--board_key", self.bbs_key, "--name", f"w{i+1}"], **_PK)
             if i < n - 1: time.sleep(5)
 
     def start_master(self):
-        subprocess.Popen(["python", str(_MAIN), "--reflect", str(_M_RE),
+        subprocess.Popen([sys.executable, str(_MAIN), "--reflect", str(_M_RE),
             "--mr_folder", str(self.folder.resolve())], **_PK)

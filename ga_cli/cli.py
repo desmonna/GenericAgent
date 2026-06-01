@@ -48,37 +48,37 @@ COMMANDS = {
     "gui": {
         "help": "启动桌面GUI (qtapp)",
         "desc": "启动基于 PyQt5 的完整桌面聊天界面（气泡代码高亮、文件拖拽、历史搜索）",
-        "cmd": ["python", "{FRONTENDS}/qtapp.py"],
+        "cmd": [sys.executable, "{FRONTENDS}/qtapp.py"],
     },
     "configure": {
         "help": "运行初始配置向导 (configure_mykey.py)",
         "desc": "首次安装后配置 API Key、模型参数等基础设置",
-        "cmd": ["python", "{PROJECT_DIR}/assets/configure_mykey.py"],
+        "cmd": [sys.executable, "{PROJECT_DIR}/assets/configure_mykey.py"],
     },
     "hub": {
         "help": "启动 Hub 管理器 (launcher)",
         "desc": "启动 hub 前端管理面板（系统托盘 + 浏览器界面）",
-        "cmd": ["python", "{PROJECT_DIR}/hub.pyw"],
+        "cmd": [sys.executable, "{PROJECT_DIR}/hub.pyw"],
     },
     "tui": {
         "help": "启动终端 TUI (tuiapp)",
         "desc": "启动终端图形界面（Textual），适合纯终端环境或 SSH",
-        "cmd": ["python", "{FRONTENDS}/tuiapp.py"],
+        "cmd": [sys.executable, "{FRONTENDS}/tuiapp.py"],
     },
     "tui2": {
         "help": "启动终端 TUI v2 (tuiapp_v2)",
         "desc": "启动增强版终端图形界面（Textual v2），更多功能更好的体验",
-        "cmd": ["python", "{FRONTENDS}/tuiapp_v2.py"],
+        "cmd": [sys.executable, "{FRONTENDS}/tuiapp_v2.py"],
     },
     "cli": {
         "help": "启动 CLI 对话 (agentmain)",
         "desc": "启动命令行交互对话模式，最轻量的使用方式",
-        "cmd": ["python", "{PROJECT_DIR}/agentmain.py"],
+        "cmd": [sys.executable, "{PROJECT_DIR}/agentmain.py"],
     },
     "launch": {
         "help": "启动 webview 桌面壳 (launch.pyw)",
         "desc": "以原生窗口形式包装 stapp Web 界面（基于 pywebview）",
-        "cmd": ["python", "{PROJECT_DIR}/launch.pyw"],
+        "cmd": [sys.executable, "{PROJECT_DIR}/launch.pyw"],
     },
     "status": {
         "help": "检查运行状态",
